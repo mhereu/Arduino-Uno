@@ -59,7 +59,6 @@ void knightRider() {
 }
 
 void snake() {
-  unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
     for (int j = 0; j <= i; j++){

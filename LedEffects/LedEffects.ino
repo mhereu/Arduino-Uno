@@ -28,7 +28,7 @@ int previous = 0;
 void setup() {
   randomSeed(analogRead(0));
   pinMode(pushButton, INPUT_PULLUP);
-  for (int i=0;i<ledCount;i++) {
+  for (int i = 0; i < ledCount; i++) {
     pinMode(leds[i], OUTPUT);
   }
 }
@@ -47,12 +47,12 @@ void knightRider() {
     }
   } else {
     prevLed = currentLed;
-    if (currentLed == ledCount-1) {
+    if (currentLed == ledCount - 1) {
       moveDirection = -1;
     } else if (currentLed == 0) {
       moveDirection = 1;
     }
-    currentLed = currentLed + (1*moveDirection);
+    currentLed = currentLed + (1 * moveDirection);
     currentLedBrightness = 0;
   }
   delay(1);  
@@ -62,7 +62,7 @@ void snake() {
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
-    for (int j=0;j<=i;j++){
+    for (int j = 0; j <= i; j++){
       analogWrite(leds[j], brightness);
     }
     i++;
@@ -77,16 +77,16 @@ void splitIn() {
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
     if (k > 0) {
-      analogWrite(leds[k-1], 0);
-      analogWrite(leds[ledCount-k], 0);
+      analogWrite(leds[k - 1], 0);
+      analogWrite(leds[ledCount - k], 0);
     }
     analogWrite(leds[k], brightness2);
-    analogWrite(leds[ledCount-1-k], brightness2);
+    analogWrite(leds[ledCount - k - 1], brightness2);
     if (k < ledCount/2) {
       k++;
     } else {
       brightness2 = (brightness2 == 0) ? 255 : 0;
-      k=0;
+      k = 0;
     }
   }
 }
@@ -95,16 +95,16 @@ void splitOut() {
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
     if (l > 0) {
-      analogWrite(leds[ledCount/2 + l-1], 0);
-      analogWrite(leds[ledCount/2 -1-l+1], 0);
+      analogWrite(leds[ledCount/2 + l - 1], 0);
+      analogWrite(leds[ledCount/2 - l], 0);
     }
     analogWrite(leds[ledCount/2 + l], brightness3);
-    analogWrite(leds[ledCount/2 -1-l], brightness3);
+    analogWrite(leds[ledCount/2 - l - 1], brightness3);
     if (l < ledCount/2) {
       l++;
     } else {
       brightness3 = (brightness3 == 0) ? 255 : 0;
-      l=0;
+      l = 0;
     }
   }
 }
@@ -121,7 +121,7 @@ void randomLed() {
 }
 
 int nextEffect() {
-  if (currentEffect >= amountEffects-1) {
+  if (currentEffect >= amountEffects - 1) {
     currentEffect = 0;
   } else {
     currentEffect++;
